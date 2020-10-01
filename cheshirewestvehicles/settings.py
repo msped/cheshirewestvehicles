@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django_forms_bootstrap',
+    'phonenumber_field',
     'contact',
 ]
 
