@@ -1,0 +1,15 @@
+label {
+    font-family: 'Signika', sans-serif;
+    font-weight: 400;
+    color: #fff;
+}
+
+.error-msg {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    padding: 1px 5px;
+    margin: 10px 0;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
