@@ -15,6 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from adminplus.sites import AdminSitePlus
+
+admin.site = AdminSitePlus()
+admin.autodiscover()
 
 urlpatterns = [
     path('admin/', admin.site.urls),
