@@ -35,7 +35,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin.apps.SimpleAdminConfig',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -44,7 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django_forms_bootstrap',
-    'adminplus',
     'sales',
     'contact',
 ]
