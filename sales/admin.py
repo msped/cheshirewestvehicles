@@ -10,6 +10,7 @@ class VehicleImagesInlineAdmin(admin.TabularInline):
 @admin.register(Vehicle)
 class VehicleAdmin(admin.ModelAdmin):
     inlines = [VehicleImagesInlineAdmin]
+    prepopulated_fields = {'slug': ('make', 'model', 'trim', 'fuel', 'price')}
 
     class Meta:
         model = Vehicle
