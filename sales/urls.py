@@ -3,5 +3,5 @@ from .views import vehicles, vehicle_detail
 
 urlpatterns = [
     path('', vehicles, name="vehicles"),
-    path('<int:vehicle_id>/', vehicle_detail, name="vehicle_detail")
+    path('<slug:vehicle_slug>/', vehicle_detail, name="vehicle_detail")
 ]
