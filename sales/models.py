@@ -35,6 +35,7 @@ class Vehicle(models.Model):
     def current_year():
         return datetime.date.today().year
 
+    slug = models.SlugField(unique=True, null=True, blank=True)
     make = models.CharField(max_length=15)
     model = models.CharField(max_length=15)
     trim = models.CharField(max_length=30)
