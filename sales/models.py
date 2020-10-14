@@ -5,11 +5,11 @@ import datetime
 
 class Vehicle(models.Model):
     """Vehicle Model"""
-    class Reserve(models.TextChoices):
-        """Options for Reserve"""
-        RESERVED = '1', 'Reserved'
-        FOR_SALE = '2', 'For Sale'
-        SOLD = '3', 'Sold'
+    RESERVE_CHOICES = (
+        (u"1", u'For Sale'),
+        (u"2", u'Reserved'),
+        (u"3", u'Sold')
+    )
 
     class Fuel(models.TextChoices):
         """Options for Fuel"""
@@ -43,7 +43,7 @@ class Vehicle(models.Model):
     fuel = models.CharField(max_length=8, choices=Fuel.choices, default='1')
     body_type = models.CharField(max_length=8, choices=BodyType.choices, default='1')
     car_state = models.CharField(max_length=8, choices=CarState.choices, default='1')
-    reserved = models.CharField(max_length=8, choices=Reserve.choices, default='2')
+    reserved = models.CharField(max_length=8, choices=RESERVE_CHOICES, default='2')
     mileage = models.IntegerField()
     engine_size = models.IntegerField()
     mot_till = models.DateField()
@@ -57,6 +57,7 @@ class VehicleImages(models.Model):
     """Images relating to a vehicle"""
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='vehicle_images')
+    is_main = models.BooleanField(default=False)
 
     def __str__(self):
         return f'{self.vehicle.id} - {self.id}'
