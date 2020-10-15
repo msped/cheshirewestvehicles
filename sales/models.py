@@ -43,7 +43,7 @@ class Vehicle(models.Model):
     fuel = models.CharField(max_length=8, choices=Fuel.choices, default='1')
     body_type = models.CharField(max_length=8, choices=BodyType.choices, default='1')
     car_state = models.CharField(max_length=8, choices=CarState.choices, default='1')
-    reserved = models.CharField(max_length=8, choices=RESERVE_CHOICES, default='2')
+    reserved = models.CharField(max_length=8, choices=RESERVE_CHOICES, default='1')
     mileage = models.IntegerField()
     engine_size = models.IntegerField()
     mot_till = models.DateField()
