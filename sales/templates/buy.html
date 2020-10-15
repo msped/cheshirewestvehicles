@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block meta %}
+
+{% endblock meta %}
+
+{% block title %}Buy a used vehicle{% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/buy.css' %}">{% endblock css %}
+
+{% block content %}
+<section class="row my-5">
+    <div class="col-12 mb-5">
+        <h1 class="text-center">Used Cars</h1>
+        <p class="text-muted text-center font-custom">Sort through our available stock for a used car that fits your needs.</p>
+    </div>
+    <div class="search-options offset-md-4 col-md-4 col-12 mb-4">
+        <form action="" method="get" class="row">
+            <div class="col-2">
+                <p class="font-custom mt-1">Filter</p>
+            </div>
+            <select class="form-control col-7" name="sort_options" id="sort_options">
+                <option value="" disabled {% if request.GET.sort_options|length == 0 %} selected {% endif %}>Select an
+                    Option</option>
+                <option value="make" {% ifequal request.GET.sort_options "make" %} selected {% endifequal %}>A-Z</option>
+                <option value="-make" {% ifequal request.GET.sort_options "-make" %} selected {% endifequal %}>Z-A</option>
+                <option value="-year" {% ifequal request.GET.sort_options "-year" %} selected {% endifequal %}>Age: Newest
+                </option>
+                <option value="year" {% ifequal request.GET.sort_options "year"  %} selected {% endifequal %}>Age: Oldest
+                </option>
+                <option value="-price" {% ifequal request.GET.sort_options "-price" %} selected {% endifequal %}>Price:
+                    Highest
+                </option>
+                <option value="price" {% ifequal request.GET.sort_options "price" %} selected {% endifequal %}>Price: Lowest
+                </option>
+            </select>
+            <div class="sort-btn col-3">
+                <button type="submit" class="btn btn-outline-dark">Filter</button>
+            </div>
+        </form>
+    </div>
+    {% for item in vehicles %}
+    <div class="card col-12 my-2">
+        <div class="row">
+            <div class="col-md-3 col-12 my-2">
+                <a href="{% url 'vehicle_detail' vehicle_slug=item.slug %}">
+                    {% for photo in images %}
+                    {% if photo.vehicle.id == item.id and photo.is_main %}
+                    <img class="card-img-top" src="{{ photo.image.url }}" alt="{{ item.make }} {{ item.model }} {{ item.trim }}">
+                    {% endif %}
+                    {% endfor %}
+                </a>
+            </div>
+            <div class="col-md-9 col-12">
+                <div class="card-header row">
+                    <div class="col-md-8 col-12">
+                        <h2>
+                            <a href="{% url 'vehicle_detail' vehicle_slug=item.slug %}">{{ item.make }} {{ item.model }}
+                            {{ item.trim }}
+                            </a>
+                        </h2>
+                    </div>
+                    <div class="col-md-4 col-12">
+                        <h3 class="float-right">
+                            {% if item.reserved == '2' or item.reserved == '3' %}
+                            [{{ item.get_reserved_display }}]
+                            {% else %}
+                            £{{ item.price }}
+                            {% endif %}
+                        </h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="card-text row">
+                        <div class="col-md-2 col-6">
+                            <div class="mb-3">
+                                <label for="#year">Year:</label>
+                                <p id="year">{{ item.year }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <div class="mb-3">
+                                <label for="#mileage">Mileage:</label>
+                                <p id="mileage">{{ item.mileage }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <div class="mb-3">
+                                <label for="#fuel">Fuel:</label>
+                                <p id="fuel">{{ item.get_fuel_display }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <div class="mb-3">
+                                <label for="#body-type">Body Type:</label>
+                                <p id="body-type">{{ item.get_body_type_display }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <div class="mb-3">
+                                <label for="#engine-size">Engine Size:</label>
+                                <p id="engine-size">{{ item.engine_size }}</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 col-6">
+                            <div class="mb-3">
+                                <label for="#mot">MOT Till:</label>
+                                <p id="mot">{{ item.mot_till|date:'d/m/Y' }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <a href="{% url 'vehicle_detail' vehicle_slug=item.slug %}" class="float-right">More Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    
+    {% endfor %}
+    {% if vehicles.paginator.num_pages > 1 %}
+    <div class="col-12 mt-5">
+        <div class="text-center">
+            <span class="step-links">
+                {% if vehicles.has_previous %}
+                    <a href="?page=1{% if request.GET|length > 0 %}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}{% endif %}"><i class="fas fa-angle-double-left"></i></a>
+                    <a href="?page={{ vehicles.previous_page_number }}{% if request.GET|length > 0 %}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}{% endif %}"><i class="fas fa-angle-left"></i></a>
+                {% endif %}
+                <span class="current">
+                    {{ vehicles.number }} of {{ vehicles.paginator.num_pages }}
+                </span>
+                {% if vehicles.has_next %}
+                    <a href="?page={{ vehicles.next_page_number }}{% if request.GET|length > 0 %}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}{% endif %}"><i class="fas fa-angle-right"></i></a>
+                    <a href="?page={{ vehicles.paginator.num_pages }}{% if request.GET|length > 0 %}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}{% endif %}"><i class="fas fa-angle-double-right"></i></a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% endif %}
+</section>
+{% endblock content %}
+
+{% block js %}
+
+{% endblock js %}
