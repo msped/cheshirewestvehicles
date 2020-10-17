@@ -1,0 +1,68 @@
+.carousel-inner {
+    border-radius: 2.5%;
+}
+
+.carousel-item {
+    height: 40vh;
+}
+
+.carousel-inner > .carousel-item > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    max-height: 800px;
+    width: auto;
+}
+
+.sale-state {
+    font-family: 'Signika', sans-serif;
+    font-weight: 400;
+    font-size: 22pt;
+}
+
+#reserve-btn {
+    background-color: rgb(4, 131, 0);
+    font-family: 'Signika', sans-serif;
+    font-weight: 400;
+    color: #fff;
+}
+
+.reserve-text {
+    font-size: 20pt;
+}
+
+label {
+    font-family: 'Signika', sans-serif;
+    font-weight: 400;
+}
+
+.form-control[readonly] {
+    background-color: #fff;
+}
+
+textarea {
+    resize: none;
+}
+
+.hpi-clear {
+    margin: 0 15px;
+    padding: 10px;
+    background-color: green;
+    color: #fff;
+    font-size: 30pt;
+    border-radius: 5px;
+}
+
+.fa-check-circle {
+    color: #fff;
+    padding: 0 5px;
+    margin-top: 5px;
+    font-size: 30pt;
+}
+
+.f-big {
+    font-size: 2rem;
+}

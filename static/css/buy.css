@@ -1,0 +1,25 @@
+.card a {
+    text-decoration: none;
+    color: #000;
+    font-family: 'Signika', sans-serif;
+    font-weight: 400;
+}
+
+.card-header {
+    background-color: #fff;
+}
+
+img {
+    border-radius: 2.5%;
+}
+
+span.current {
+    font-size: 17pt;
+    font-family: 'Signika', sans-serif;
+    font-weight: 400;
+}
+
+.fa-angle-double-left, .fa-angle-left, .fa-angle-right, .fa-angle-double-right {
+    color: #376E6F;
+    font-size: 17pt;
+}
