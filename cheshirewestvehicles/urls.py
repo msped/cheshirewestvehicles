@@ -22,6 +22,7 @@ from .settings import MEDIA_ROOT
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('buy/', include('sales.urls')),
+    path('gallery/', include('gallery.urls')),
     path('contact/', include('contact.urls')),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
