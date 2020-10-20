@@ -2,7 +2,7 @@
 {% load static %}
 {% load bootstrap_tags %}
 {% block meta %}
-<meta name="description" content="See featured vehicles built or restored by CheshireWestVehicles for customers to a professional standard.">
+<meta name="description" content="See featured vehicles built or restored by CheshireWestVehicles for customers to a high professional standard.">
 {% endblock meta %}
 
 {% block title %}Featured Gallery{% endblock title %}
@@ -14,7 +14,8 @@
     <section class="row my-2">
         <div class="col-12 mb-5">
             <h1 class="text-center">Featured Gallery</h1>
-            <p class="text-muted text-center font-custom"></p>
+            <p class="text-muted text-center font-custom">See builds and restorations completed by Cheshire West Vehicles for cusomters here in our featured gallery. <br>
+                For more information about what we can do for you, <a href="{% url 'contact' %}"> contact us.</a></p>
         </div>
         {% for item in featured %}
         <div class="card col-12 my-2">
