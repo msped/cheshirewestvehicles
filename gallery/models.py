@@ -4,6 +4,7 @@ from django.db import models
 
 class galleryItem(models.Model):
     """Gallery Item"""
+    slug = models.SlugField(unique=True, blank=True, null=True)
     make = models.CharField(max_length=45)
     model = models.CharField(max_length=45)
     trim = models.CharField(max_length=45)
