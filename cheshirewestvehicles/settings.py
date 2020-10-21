@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'sales',
     'gallery',
     'contact',
+    'business_admin',
 ]
 
 MIDDLEWARE = [
