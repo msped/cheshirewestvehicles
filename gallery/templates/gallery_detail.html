@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block meta %}
+<meta name="description" content="This featured vehicle is a {{vehicle.year}} {{item.vehicle.make}} {{item.vehicle.model}} {{item.vehicle.trim}} built by CheshireWestVehicles.">
+{% endblock meta %}
+
+{% block title %}{{vehicle.make}} {{vehicle.model}} {{vehicle.trim}} Featured{% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/gallery_detail.css' %}">{% endblock css %}
+
+{% block content %}
+<section class="row mt-4">
+    <!--Images-->
+    <div class="offset-md-2 col-md-8 col-12 my-3">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                {% for item in images %}
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{ forloop.counter0 }}" {% if forloop.counter0 == 0 %}class="active"{% endif %}></li>
+                {% endfor %}
+            </ol>
+            <div class="carousel-inner" >
+                {% for item in images %}
+                <div class="carousel-item {% if forloop.counter0 == 0 %}active{% endif %}">
+                    <img class="d-block w-100" src="{{ item.image.url }}" alt="{{item.vehicle.make}} {{item.vehicle.model}} {{item.vehicle.trim}}">
+                </div>
+                {% endfor %}
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </div>
+
+    <!--Vehicle-->
+    <div class="col-12 mt-5">
+        <div class="row">
+            <div class="col-md-4 col-12">
+                <p class="font-custom text-center">Vehicle: {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</p>
+            </div>
+            <div class="col-md-4 col-12">
+                <p class="font-custom text-center">Year: {{vehicle.year}}</p>
+            </div>
+            <div class="col-md-4 col-12">
+                <p class="font-custom text-center">Power: {{vehicle.power}}bhp</p>
+            </div>
+        </div>
+        <div class="col-12">
+            <label for="" class="font-custom">Description:</label>
+            <span class="font-custom">{{vehicle.description|linebreaks}}</span>
+        </div>
+    </div>
+</section>
+{% endblock content %}
+
+{% block js %}
+
+{% endblock js %}

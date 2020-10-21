@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load bootstrap_tags %}
+{% block meta %}
+<meta name="description" content="See featured vehicles built or restored by CheshireWestVehicles for customers to a high professional standard.">
+{% endblock meta %}
+
+{% block title %}Featured Gallery{% endblock title %}
+
+{% block css %}<link rel="stylesheet" href="{% static 'css/gallery.css' %}">{% endblock css %}
+
+{% block content %}
+<section class="row my-5">
+    <section class="row my-2">
+        <div class="col-12 mb-5">
+            <h1 class="text-center">Featured Gallery</h1>
+            <p class="text-muted text-center font-custom">See builds and restorations completed by Cheshire West Vehicles for cusomters here in our featured gallery. <br>
+                For more information about what we can do for you, <a href="{% url 'contact' %}"> contact us.</a></p>
+        </div>
+        {% for item in featured %}
+        <div class="card col-12 my-2">
+            <div class="row">
+                <div class="col-md-3 col-12 my-2">
+                    <a href="{% url 'gallery_detail' gallery_slug=item.slug %}">
+                        {% for photo in images %}
+                        {% if photo.item.id == item.id and photo.is_main %}
+                        <img class="card-img-top" src="{{ photo.image.url }}" alt="{{ item.make }} {{ item.model }} {{ item.trim }}">
+                        {% endif %}
+                        {% endfor %}
+                    </a>
+                </div>
+                <div class="col-md-9 col-12">
+                    <div class="card-header row">
+                        <div class="col-md-8 col-12">
+                            <h2>
+                                <a href="{% url 'gallery_detail' gallery_slug=item.slug %}">{{ item.make }} {{ item.model }}
+                                {{ item.trim }}
+                                </a>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="card-text row">
+                            <div class="col-12">
+                                <p class="font-custom">This build of a {{ item.year }} {{ item.make }} {{ item.model }}
+                                    {{ item.trim }} is running {{ item.power }}bhp. Click 'More Details' to read about the full build.</p>
+                            </div>
+                        </div>
+                        <div class="col-12 mt-4">
+                            <a href="{% url 'gallery_detail' gallery_slug=item.slug %}" class="float-right">More Details</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="offset-md-3 col-md-6 col-12 mt-5">
+            <div class="text-center">
+                <p class="font-custom">Sorry, we currently don't have any vehicles in the gallery.</p>
+            </div>
+        </div>
+        {% endfor %}
+    </section>
+</section>
+{% endblock content %}
+
+{% block js %}
+
+{% endblock js %}

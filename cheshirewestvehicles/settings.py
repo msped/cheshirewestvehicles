@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django_forms_bootstrap',
     'sales',
+    'gallery',
     'contact',
 ]
 
