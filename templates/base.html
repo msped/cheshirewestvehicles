@@ -40,9 +40,6 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'create_invoice' %}">Create Invoice</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'create_sales_receipt' %}">Create Receipt</a>
-                    </li>
                     {% endif %}
                 </ul>
             </div>
@@ -76,6 +73,9 @@
                         <li><a class="muted" href="{% url 'vehicles' %}">Buy</a></li>
                         <li><a class="muted" href="{% url 'gallery' %}">Featured Gallery</a></li>
                         <li><a class="muted" href="{% url 'contact' %}">Contact Us</a></li>
+                        {% if user.is_authenticated and user.is_staff %}
+                        <li><a class="muted" href="{% url 'create_invoice' %}">Create Invoice</a></li>
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="col-6 col-md">
@@ -84,12 +84,12 @@
                         <li><a class="muted" href="#">Services</a></li>
                     </ul>
                 </div>
-                <div class="col-12 col-md text-custom">
-                    Clive Green Lane <br>
-                    Middlewich <br>
-                    Cheshire <br>
+                <address class="col-12 col-md text-custom">
+                    Clive Green Lane
+                    Middlewich 
+                    Cheshire 
                     CW10 0NA
-                </div>
+                </address>
             </div>
         </footer>
     
