@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cheshire West Vehicles Invoice</title>
+  <style>
+    @page {
+      margin: 2.5cm;
+      page-break-after: always;
+    }
+
+    h1 {
+      font-size: 24pt;
+      font-family: 'SG', sans-serif;
+    }  
+
+    #parts-table {
+      border-collapse: collapse;
+      border: 1px solid rgb(65, 65, 65);
+    }
+
+    table#parts-table tbody tr, table#parts-table thead tr {
+      border-bottom: 1px solid rgb(65, 65, 65);
+    }
+
+    table#parts-table thead tr th, table#parts-table tbody tr td {
+      padding: 5px;
+    } 
+  </style>
+</head>
+<body>
+  <div style="text-align: center;">
+    <h1>Cheshire West Vehicles Invoice</h1>
+  </div>
+
+  <div>
+    <table>
+      <tr>
+        <td style="width:90%;">
+          {{ invoice.customer.name}}<br>
+          {% if invoice.customer.address_line_1 %}{{invoice.customer.address_line_1}}<br>{% endif %}
+          {% if invoice.customer.address_line_2 %}{{invoice.customer.address_line_2}} <br>{% endif %}
+          {% if invoice.customer.town_city %}{{invoice.customer.town_city}}<br>{% endif %}
+          {% if invoice.customer.county %}{{invoice.customer.county}}<br>{% endif %}
+          {% if invoice.customer.postcode %}{{invoice.customer.postcode}}<br>{% endif %}
+          <div stlye="margin: 1rem 0;">
+            Date: {% now "jS F Y " %}<br>
+            Phone: {{invoice.customer.phone_number}}<br>
+            E-mail: {{invoice.customer.email}}
+          </div>
+        </td>
+        <td style="text-align: right; padding: 0;">
+          Clive Green Lane <br>
+          Middlewich <br>
+          Cheshire <br>
+          CW10 0NA
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin: 1rem 0; text-align: center;">
+    <table style="width: 100%;">
+      <tr>
+        <td>Make: {{ invoice.vehicle.make }}</td>
+        <td>Model: {{ invoice.vehicle.model }}</td>
+        <td>Year: {{ invoice.vehicle.year }}</td>
+        <td>Mileage: {{ invoice.vehicle.mileage }}</td>
+      </tr>
+    </table>
+  </div>
+
+  <div style="margin: 1.5rem auto; padding: 0 5rem;">
+    <table style="width: 75%;" id="parts-table">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th style="width: 125px; text-align: center;">Qty</th>
+          <th style="width: 175px; text-align: center;">Unit Price</th>
+          <th style="width: 175px; text-align: center;">Line Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if invoice.labour.total != '0' %}
+        <tr>
+          <td>
+            <p>Labour</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{invoice.labour.qty}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{invoice.labour.unit}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{invoice.labour.qty}}</p>
+          </td>
+        </tr>
+        {% endif %}
+        {% for key, value in invoice.parts.items %}
+        <tr>
+          <td>
+            <p>{{value.description}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{value.qty}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{value.unit}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{value.line}}</p>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div style="text-align: right;">
+      <p style="font-size: 14pt;">Total £<span>{{invoice.total}}</span></p>
+    </div>
+  </div>
+
+  <div style="margin-top: .5rem;">
+    <label for="#comment">Comments</label>
+    <p>{{invoice.comments|linebreaks}}</p>
+  </div>
+
+  <div style="text-align: center;">
+    <p>If there are issues with this invoice please contact us as soon as possible, the details for contacting us are listed on our website https://www.cheshirewestvehicles.co.uk.</p>
+  </div>
+
+</body>
+</html>
