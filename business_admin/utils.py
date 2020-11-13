@@ -70,7 +70,6 @@ def invoice_handler(request):
         pdf = render_to_pdf(data)
         response = HttpResponse(pdf.getvalue(), content_type="application/pdf")
         response['Content-Disposition'] = 'attachment; filename=invoice.pdf'
-        print(response.content)
         return response
     else: 
         pdf = render_to_pdf(data)
