@@ -5,3 +5,4 @@ tmp/
 media/
 .coverage
 htmlcov/
+settings.json

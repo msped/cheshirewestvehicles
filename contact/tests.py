@@ -31,7 +31,7 @@ class TestContactApp(TestCase):
             },
             follow=True
         )
-        response = self.assertIn(b"Message sent, we&#x27;ll contact you as soon as we can.", response.content)
+        self.assertIn(b"Message sent, we&#x27;ll contact you as soon as we can.", response.content)
 
 class TestContactForm(TestCase):
     """Contact form tests"""

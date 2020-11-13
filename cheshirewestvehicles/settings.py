@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'sales',
     'gallery',
     'contact',
+    'business_admin',
 ]
 
 MIDDLEWARE = [
@@ -127,7 +128,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
@@ -137,5 +137,4 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-EMAIL_FILE_PATH = os.path.join(BASE_DIR, 'tmp') # change this to a proper location
+LOGIN_URL = '/admin/login/'
