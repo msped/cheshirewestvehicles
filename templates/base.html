@@ -73,7 +73,7 @@
                         <li><a class="muted" href="{% url 'vehicles' %}">Buy</a></li>
                         <li><a class="muted" href="{% url 'gallery' %}">Featured Gallery</a></li>
                         <li><a class="muted" href="{% url 'contact' %}">Contact Us</a></li>
-                        {% if user.is_authenticated and user.is_staff %}
+                        {% if user.is_authenticated and user.is_superuser %}
                         <li><a class="muted" href="{% url 'create_invoice' %}">Create Invoice</a></li>
                         {% endif %}
                     </ul>
