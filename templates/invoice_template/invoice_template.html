@@ -51,6 +51,7 @@
           </div>
         </td>
         <td style="text-align: right; padding: 0;">
+          CWN Park Farm <br>
           Clive Green Lane <br>
           Middlewich <br>
           Cheshire <br>
@@ -82,22 +83,6 @@
         </tr>
       </thead>
       <tbody>
-        {% if invoice.labour.total != '0' %}
-        <tr>
-          <td>
-            <p>Labour</p>
-          </td>
-          <td>
-            <p style="text-align: center;">{{invoice.labour.qty}}</p>
-          </td>
-          <td>
-            <p style="text-align: center;">{{invoice.labour.unit}}</p>
-          </td>
-          <td>
-            <p style="text-align: center;">{{invoice.labour.qty}}</p>
-          </td>
-        </tr>
-        {% endif %}
         {% for key, value in invoice.parts.items %}
         <tr>
           <td>
@@ -114,6 +99,22 @@
           </td>
         </tr>
         {% endfor %}
+        {% if invoice.labour.total != '0' %}
+        <tr>
+          <td>
+            <p>Labour</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{invoice.labour.qty}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{invoice.labour.unit}}</p>
+          </td>
+          <td>
+            <p style="text-align: center;">{{invoice.labour.qty}}</p>
+          </td>
+        </tr>
+        {% endif %}
       </tbody>
     </table>
 
