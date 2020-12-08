@@ -16,7 +16,7 @@
         <p class="lead">Looks like something went wrong, a report has been sent detailing the issue.</p>
         <hr class="my-4">
         <p>If the error has hindered your progress through the site please <a href="{% url 'contact' %}">contact us</a>. If not click below to return to the homepage.</p>
-        <a class="btn btn-outline-primary my-5" href="" role="button">Return to Homepage.</a>
+        <a class="btn btn-outline-primary my-5" href="{% url 'home' %}" role="button">Return to Homepage.</a>
     </div>
 </div>
 {% endblock content %}
