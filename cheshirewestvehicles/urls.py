@@ -27,3 +27,8 @@ urlpatterns = [
     path('business-admin/', include('business_admin.urls')),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT}),
 ]
+
+handler400 = 'error_handling.views.handler400'
+handler403 = 'error_handling.views.handler403'
+handler404 = 'error_handling.views.handler404'
+handler500 = 'error_handling.views.handler500'

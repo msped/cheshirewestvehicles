@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+500 Internal Server Error
+{% endblock title %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/error_page.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4 text-center p-3">500 Internal Server Error</h1>
+    <div class="p-5">
+        <p class="lead">Looks like something went wrong, a report has been sent detailing the issue.</p>
+        <hr class="my-4">
+        <p>If the error has hindered your progress through the site please <a href="{% url 'contact' %}">contact us</a>. If not click below to return to the homepage.</p>
+        <a class="btn btn-outline-primary my-5" href="{% url 'home' %}" role="button">Return to Homepage.</a>
+    </div>
+</div>
+{% endblock content %}
