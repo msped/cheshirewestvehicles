@@ -40,7 +40,8 @@ def create_data_structure(request):
             'make': request.POST.get('make'),
             'model': request.POST.get('model'),
             'year': request.POST.get('year'),
-            'mileage': request.POST.get('mileage')
+            'mileage': request.POST.get('mileage'),
+            'vrm': request.POST.get('vrm')
         },
         'labour': {
             'qty': request.POST.get('labour-qty'),
