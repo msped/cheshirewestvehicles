@@ -55,6 +55,7 @@ class TestBusinessAdminApp(TestCase):
             'model': 'A Class',
             'year': '2013',
             'mileage': '74000',
+            'vrm': 'AA12 AFE',
             'labour-qty': '10',
             'labour-unit': '20',
             'labour-total': '200',
