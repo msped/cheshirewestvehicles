@@ -46,7 +46,7 @@ class Vehicle(models.Model):
     reserved = models.CharField(max_length=8, choices=RESERVE_CHOICES, default='1')
     mileage = models.IntegerField()
     engine_size = models.IntegerField()
-    mot_till = models.DateField()
+    mot_expiry = models.DateField()
     extras = models.TextField()
     price = models.DecimalField(max_digits=7, decimal_places=2)
 
