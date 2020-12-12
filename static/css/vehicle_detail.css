@@ -66,3 +66,13 @@ textarea {
 .f-big {
     font-size: 2rem;
 }
+
+#trade-in-input {
+    height: 20px;
+    width: 20px;
+    margin: 0 auto;
+}
+
+#trade-in {
+    display: none;
+}
