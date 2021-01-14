@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.views import View
 from .utils import invoice_handler
 
 # Create your views here.
 
-@login_required
-def create_invoice(request):
-    if request.method == "POST":
+class CreateInvoice(View):
+    template_name = "create_invoice.html"
+    def get(self, request):
+        return render(request, self.template_name)
+
+    def post(self, request):
         invoice_handler(request)
-    return render(request, "create_invoice.html")
