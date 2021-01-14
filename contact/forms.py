@@ -1,7 +1,7 @@
 from django import forms
 from django.core.validators import RegexValidator
 
-class Contact(forms.Form):
+class ContactForm(forms.Form):
     """Contact form"""
     phone_regex = RegexValidator(
         regex='^[0-9]*$',
