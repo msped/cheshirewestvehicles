@@ -1,14 +1,19 @@
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
+from django.views import View
 from django.contrib import messages
-from .forms import Contact
+from .forms import ContactForm
 
 # Create your views here.
 
-def contact(request):
-    """Contact Page"""
-    if request.method == "POST":
-        form = Contact(request.POST or None)
+class Contact(View):
+    template_name = "contact.html"
+    def get(self, request):
+        form = ContactForm()
+        return render(request,self.template_name, {'form': form})
+    
+    def post(self, request):
+        form = ContactForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
             email = form.cleaned_data['email']
@@ -25,6 +30,3 @@ def contact(request):
             )
             messages.success(request, "Message sent, we'll contact you as soon as we can.")
             return redirect('contact')
-    else:
-        form = Contact()
-    return render(request, "contact.html", {'form': form})
