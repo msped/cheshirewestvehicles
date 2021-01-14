@@ -26,7 +26,7 @@ class TestModels(TestCase):
             body_type='2',
             mileage=73000,
             engine_size=1991,
-            mot_till='2020-12-12',
+            mot_expiry='2020-12-12',
             extras='Here are some optional extras that are on this car.',
             price=13500
         )
@@ -110,7 +110,7 @@ class TestViews(TestCase):
             body_type='2',
             mileage=73000,
             engine_size=1991,
-            mot_till='2020-12-12',
+            mot_expiry='2020-12-12',
             extras='Here are some optional extras that are on this car.',
             price=13500
         )
