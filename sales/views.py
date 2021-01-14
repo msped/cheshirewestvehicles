@@ -1,5 +1,6 @@
 import os
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
 from django.core.paginator import Paginator
 from django.contrib import messages
 from sendgrid import SendGridAPIClient
@@ -10,28 +11,40 @@ from .forms import ReserveContactForm
 
 # Create your views here.
 
-def vehicles(request):
-    """All Vehicles"""
-    sort_options = request.GET.get('sort_options')
-    if sort_options:
-        vehicles = Vehicle.objects.all().order_by(sort_options)
-    else:
-        vehicles = Vehicle.objects.all().order_by('reserved')
-    paginator = Paginator(vehicles, 10)
-    page_number = request.GET.get('page')
-    vehicle_obj = paginator.get_page(page_number)
-    images = VehicleImages.objects.all().order_by('id')
-    context = {
-        'vehicles': vehicle_obj,
-        'images': images
-    }
-    return render(request, "buy.html", context)
+class Vehicles(View):
+    """Show all vehicles"""
+    template_name = 'buy.html'
+    def get(self, request):
+        sort_options = request.GET.get('sort_options')
+        if sort_options:
+            vehicles = Vehicle.objects.all().order_by(sort_options)
+        else:
+            vehicles = Vehicle.objects.all().order_by('reserved')
+        paginator = Paginator(vehicles, 10)
+        page_number = request.GET.get('page')
+        vehicle_obj = paginator.get_page(page_number)
+        images = VehicleImages.objects.all().order_by('id')
+        context = {
+            'vehicles': vehicle_obj,
+            'images': images
+        }
+        return render(request, self.template_name, context)
 
-def vehicle_detail(request, vehicle_slug):
-    """Detail view of a vehicle"""
-    vehicle = Vehicle.objects.get(slug=vehicle_slug)
-    images = VehicleImages.objects.filter(vehicle=vehicle)
-    if request.method == "POST":
+class VehicleDetail(View):
+    template_name = 'vehicle_detail.html'
+    def get(self, request, vehicle_slug):
+        vehicle = Vehicle.objects.get(slug=vehicle_slug)
+        images = VehicleImages.objects.filter(vehicle=vehicle)
+        form = ReserveContactForm()
+        context = {
+            'vehicle': vehicle,
+            'images': images,
+            'form': form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request, vehicle_slug):
+        vehicle = Vehicle.objects.get(slug=vehicle_slug)
         form = ReserveContactForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
@@ -70,11 +83,4 @@ def vehicle_detail(request, vehicle_slug):
             #     response = sg.send(message)
             # except Exception as e:
             #     print(e)
-    else:
-        form = ReserveContactForm()
-    context = {
-        'vehicle': vehicle,
-        'images': images,
-        'form': form
-    }
-    return render(request, "vehicle_detail.html", context)
+        return redirect('vehicle_detail', vehicle_slug=vehicle_slug)
