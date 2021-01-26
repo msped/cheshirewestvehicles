@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import gallery, gallery_detail
+from .views import Gallery, GalleryDetail
 
 urlpatterns = [
-    path('', gallery, name="gallery"),
-    path('<slug:gallery_slug>/', gallery_detail, name="gallery_detail")
+    path('', Gallery.as_view(), name="gallery"),
+    path('<slug:gallery_slug>/', GalleryDetail.as_view(), name="gallery_detail")
 ]

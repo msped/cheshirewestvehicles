@@ -16,27 +16,31 @@
         <p class="text-muted text-center font-custom">Sort through our available stock for a used car that fits your needs.</p>
     </div>
     <div class="search-options offset-md-4 col-md-4 col-12 mb-4">
-        <form action="" method="get" class="row">
-            <div class="col-2">
-                <p class="font-custom mt-1">Filter</p>
-            </div>
-            <select class="form-control col-7" name="sort_options" id="sort_options">
-                <option value="" disabled {% if request.GET.sort_options|length == 0 %} selected {% endif %}>Select an
-                    Option</option>
-                <option value="make" {% ifequal request.GET.sort_options "make" %} selected {% endifequal %}>A-Z</option>
-                <option value="-make" {% ifequal request.GET.sort_options "-make" %} selected {% endifequal %}>Z-A</option>
-                <option value="-year" {% ifequal request.GET.sort_options "-year" %} selected {% endifequal %}>Age: Newest
-                </option>
-                <option value="year" {% ifequal request.GET.sort_options "year"  %} selected {% endifequal %}>Age: Oldest
-                </option>
-                <option value="-price" {% ifequal request.GET.sort_options "-price" %} selected {% endifequal %}>Price:
-                    Highest
-                </option>
-                <option value="price" {% ifequal request.GET.sort_options "price" %} selected {% endifequal %}>Price: Lowest
-                </option>
-            </select>
-            <div class="sort-btn col-3">
-                <button type="submit" class="btn btn-outline-dark">Filter</button>
+        <form action="" method="get">
+            <div class="row">
+                <div class="col-2">
+                    <p class="font-custom mt-1" id="filter">Filter</p>
+                </div>
+                <div class="col-7">
+                    <select class="form-control" name="sort_options" id="sort_options" aria-labelledby="filter">
+                        <option value="" disabled {% if request.GET.sort_options|length == 0 %} selected {% endif %}>Select an
+                            Option</option>
+                        <option value="make" {% ifequal request.GET.sort_options "make" %} selected {% endifequal %}>A-Z</option>
+                        <option value="-make" {% ifequal request.GET.sort_options "-make" %} selected {% endifequal %}>Z-A</option>
+                        <option value="-year" {% ifequal request.GET.sort_options "-year" %} selected {% endifequal %}>Age: Newest
+                        </option>
+                        <option value="year" {% ifequal request.GET.sort_options "year"  %} selected {% endifequal %}>Age: Oldest
+                        </option>
+                        <option value="-price" {% ifequal request.GET.sort_options "-price" %} selected {% endifequal %}>Price:
+                            Highest
+                        </option>
+                        <option value="price" {% ifequal request.GET.sort_options "price" %} selected {% endifequal %}>Price: Lowest
+                        </option>
+                    </select>
+                </div>
+                <div class="sort-btn col-3">
+                    <button type="submit" class="btn btn-outline-dark">Filter</button>
+                </div>
             </div>
         </form>
     </div>
@@ -55,20 +59,20 @@
             <div class="col-md-9 col-12">
                 <div class="card-header row">
                     <div class="col-md-8 col-12">
-                        <h2>
+                        <div class="fs-2">
                             <a href="{% url 'vehicle_detail' vehicle_slug=item.slug %}">{{ item.make }} {{ item.model }}
                             {{ item.trim }}
                             </a>
-                        </h2>
+                        </div>
                     </div>
                     <div class="col-md-4 col-12">
-                        <h3 class="float-right">
+                        <div class="float-end fs-3">
                             {% if item.reserved == '2' or item.reserved == '3' %}
                             [{{ item.get_reserved_display }}]
                             {% else %}
                             £{{ item.price }}
                             {% endif %}
-                        </h3>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body">
@@ -111,7 +115,7 @@
                         </div>
                     </div>
                     <div class="col-12">
-                        <a href="{% url 'vehicle_detail' vehicle_slug=item.slug %}" class="float-right">More Details</a>
+                        <a href="{% url 'vehicle_detail' vehicle_slug=item.slug %}" class="float-end mt-5">More Details</a>
                     </div>
                 </div>
             </div>

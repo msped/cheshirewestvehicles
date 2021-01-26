@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import create_invoice
+from django.contrib.auth.decorators import login_required
+from .views import CreateInvoice
 
 urlpatterns = [
-    path('create/invoice', create_invoice, name="create_invoice"),
+    path('create/invoice', login_required(CreateInvoice.as_view()), name="create_invoice"),
 ]

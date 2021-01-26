@@ -22,28 +22,28 @@
             <h2 class="text-center"> Customer Details</h2>
             <div class="row mt-4">
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="name" placeholder="Name" required>
+                    <input type="text" class="form-control" aria-label="Name" name="name" placeholder="Name" required>
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="phone_number" placeholder="Phone Number" required>
+                    <input type="text" class="form-control" aria-label="Phone Number" name="phone_number" placeholder="Phone Number" required>
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="email" class="form-control" name="email" placeholder="E-mail" required>
+                    <input type="email" class="form-control" aria-label="Email" name="email" placeholder="E-mail" required>
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="address_line_1" placeholder="Address Line 1">
+                    <input type="text" class="form-control" aria-label="Address Line 1" name="address_line_1" placeholder="Address Line 1">
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="address_line_2" placeholder="Address Line 2">
+                    <input type="text" class="form-control" aria-label="Address Line 2" name="address_line_2" placeholder="Address Line 2">
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="town_city" placeholder="Town / City">
+                    <input type="text" class="form-control" aria-label="Town / City" name="town_city" placeholder="Town / City">
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="county" placeholder="County">
+                    <input type="text" class="form-control" aria-label="County" name="county" placeholder="County">
                 </div>
                 <div class="col-md-4 col-12 mb-2">
-                    <input type="text" class="form-control" name="postcode" placeholder="Postcode">
+                    <input type="text" class="form-control" aria-label="Postcode" name="postcode" placeholder="Postcode">
                 </div>
             </div>
         </section>
@@ -51,19 +51,19 @@
             <h2 class="text-center">Vehicle Details</h2>
             <div class="row mt-4">
                 <div class="col-md-6 col-12 mb-2">
-                    <input type="text" class="form-control" name="make" placeholder="Make" required>
+                    <input type="text" class="form-control" aria-label="Make" name="make" placeholder="Make" required>
                 </div>
                 <div class="col-md-6 col-12 mb-2">
-                    <input type="text" class="form-control" name="model" placeholder="Model" required>
+                    <input type="text" class="form-control" aria-label="Model" name="model" placeholder="Model" required>
                 </div>
                 <div class="col-md-6 col-12 mb-2">
-                    <input type="text" class="form-control" name="year" placeholder="Year" required>
+                    <input type="text" class="form-control" aria-label="Year" name="year" placeholder="Year" required>
                 </div>
                 <div class="col-md-6 col-12 mb-2">
-                    <input type="number" class="form-control" name="mileage" placeholder="Mileage" required>
+                    <input type="number" class="form-control" aria-label="Mileage" name="mileage" placeholder="Mileage" required>
                 </div>
                 <div class="col-md-6 col-12 mb-2">
-                    <input type="text" class="form-control" name="vrm" placeholder="VRM" required>
+                    <input type="text" class="form-control" aria-label="VRM" name="vrm" placeholder="VRM" required>
                 </div>
             </div>
         </section>
@@ -162,7 +162,7 @@
                     </div>
                 </div>
                 <div class="col-12 mt-3">
-                    <div class="float-right">
+                    <div class="float-end">
                         <p class="font-custom f-14">Total £<span id="invoice-total">0</span></p>
                         <input type="hidden" name="invoice-total" value="0">
                     </div>
@@ -185,5 +185,6 @@
 {% endblock content %}
 
 {% block js %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="{% static 'js/create_invoice.js' %}"></script>
 {% endblock js %}

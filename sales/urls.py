@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import vehicles, vehicle_detail
+from .views import Vehicles, VehicleDetail
 
 urlpatterns = [
-    path('', vehicles, name="vehicles"),
-    path('<slug:vehicle_slug>/', vehicle_detail, name="vehicle_detail")
+    path('', Vehicles.as_view(), name="vehicles"),
+    path('<slug:vehicle_slug>/', VehicleDetail.as_view(), name="vehicle_detail")
 ]
