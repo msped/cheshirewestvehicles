@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.core.paginator import Paginator
 from django.contrib import messages
+from django.http import HttpResponse
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from django.conf import settings
@@ -84,3 +85,8 @@ class VehicleDetail(View):
             # except Exception as e:
             #     print(e)
         return redirect('vehicle_detail', vehicle_slug=vehicle_slug)
+
+def check_sale_state(request, vehicle_id):
+    """Check sale state to see if has updated"""
+    vehicle = Vehicle.objects.get(id=vehicle_id)
+    return HttpResponse(str(vehicle.get_reserved_display()))
