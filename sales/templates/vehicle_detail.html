@@ -8,7 +8,7 @@ been sold.{% else %} is for sale at {{ vehicle.price }}{% if vehicle.car_state =
 with 28 days warranty.{% endif %}{% endif %}">
 {% endblock meta %}
 
-{% block title %}[{{vehicle.get_reserved_display}}] {{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}{% endblock title %}
+{% block title %}{{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}{% endblock title %}
 
 {% block css %}
 <link rel="stylesheet" href="{% static 'css/vehicle_detail.css' %}">
@@ -47,10 +47,11 @@ with 28 days warranty.{% endif %}{% endif %}">
                 <h1>{{vehicle.make}} {{vehicle.model}} {{vehicle.trim}}</h1>
             </div>
             <div class="col-12">
-                <p class="sale-state">[{{vehicle.get_reserved_display}}]</p>
+                <p class="sale-state">[<span id="sale-state">{{vehicle.get_reserved_display}}</span>]</p>
+                <input type="hidden" name="vehicle-id" id="vehicle-id" value="{{ vehicle.id }}">
             </div>
             <div class="col-12">
-                <h2 class="vehicle-price float-right">£{{vehicle.price}}</h2>
+                <h2 class="vehicle-price float-end">£{{vehicle.price}}</h2>
             </div>
             <div class="col-12 my-2"></div>
             <div class="col-12 my-2">
@@ -62,7 +63,7 @@ with 28 days warranty.{% endif %}{% endif %}">
                         <p>This vehicle is part of our frontline stock and comes with <strong>28 days warranty.</strong></p>
                         {% endif %}
                     </div>
-                    <div class="col-md-6 col-12">
+                    <div class="col-md-6 col-12" id="reserve-button">
                         {% if vehicle.get_reserved_display == 'For Sale' %}
                         <div class="text-center">
                             <!-- Button trigger Contact modal -->
@@ -125,7 +126,7 @@ with 28 days warranty.{% endif %}{% endif %}">
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
                         </div>
                     </div>
                 </div>
