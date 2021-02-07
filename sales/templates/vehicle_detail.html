@@ -90,9 +90,8 @@ with 28 days warranty.{% endif %}{% endif %}">
                             <form action="{% url 'vehicle_detail' vehicle_slug=vehicle.slug %}" method="POST">
                                 {% csrf_token %}
                                 {{form|as_bootstrap}}
-                                <div class="checkbox">
-                                    <p class="text-center">Do you have a vehicle to trade-in?</p>
-                                    <input type="checkbox" id="trade-in-input" name="trade-in" class="form-control">
+                                <div class="checkbox mt-3">
+                                    <p class="text-center">Do you have a vehicle to trade-in?<input type="checkbox" id="trade-in-input" name="trade-in" class="form-check-input ms-3"></p>
                                 </div>
                                 <div id="trade-in" class="row">
                                     <div class="col-12">
