@@ -2,7 +2,6 @@ import os
 from django.template.loader import render_to_string
 from django.shortcuts import redirect
 from django.core.mail import EmailMessage
-from django.contrib import messages
 from django.http import HttpResponse
 from xhtml2pdf.pisa import pisaDocument
 from io import BytesIO
@@ -63,6 +62,7 @@ def render_to_pdf(data):
     pdf = pisaDocument(BytesIO(template.encode("utf-8")), result)
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf') 
+    print("PDF Error")
     return None
 
 def invoice_handler(request): 
@@ -78,5 +78,4 @@ def invoice_handler(request):
         email = EmailMessage('Invoice for Services | Cheshire West Vehicles', message, 'noreply@cheshirewestvehicles.co.uk', [data['customer']['email']])
         email.attach('invoice.pdf', pdf.getvalue(), 'application/pdf')
         email.send()
-        messages.success(request, f"Invoice sent by email to {data['customer']['email']}.")
-        return redirect('create_invoice')
+        return data['customer']['email']
