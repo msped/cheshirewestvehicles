@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
+from django.contrib import messages
 from .utils import invoice_handler
 
 # Create your views here.
@@ -10,4 +11,6 @@ class CreateInvoice(View):
         return render(request, self.template_name)
 
     def post(self, request):
-        invoice_handler(request)
+        email_address = invoice_handler(request)
+        messages.success(request, f"Invoice sent by email to {email_address}.")
+        return redirect('create_invoice')

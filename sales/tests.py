@@ -135,7 +135,7 @@ class TestViews(TestCase):
         )
         self.assertEqual(response.status_code, 200)
         self.assertIn(
-            b'[Reserved]',
+            b'Reserved',
             response.content
         )
 
